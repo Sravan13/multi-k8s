@@ -1,0 +1,12 @@
+sudo: required
+services:
+  - docker # we want docker to be pre-installed as soon as we run over build
+before_install: # below two commands setup google cloud locally in your machine
+  - curl https://sdk.cloud.google.com | bash > /dev/null #download and install google cloud sdk
+  - source $HOME/google-cloud-sdk/path.bash.inc # $HOME/google-cloud-sdk is default installation directory and source the file path.bash.inc
+  - gcloud components update kubectl # this will install and update kubectl inside our travis env
+  - gcloud auth activate-service-account --key-file service-account.json # we have to do authorization with the google cloud
+  - gcloud config set project <project name>
+  - gcloud config set compute/zone <zone name>
+  - gcloud container clusters get-credentails <clusters name>
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
