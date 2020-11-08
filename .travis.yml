@@ -13,7 +13,7 @@ before_install: # below two commands setup google cloud locally in your machine
   - gcloud auth activate-service-account --key-file service-account.json # we have to do authorization with the google cloud
   - gcloud config set project multi-k8s-293014
   - gcloud config set compute/zone us-central1-c	
-  - gcloud container clusters get-credentails multi-cluster
+  - gcloud container clusters get-credentials multi-cluster
   - echo "$DOCKER_PASSWORD" | docker login - u "$DOCKER_USERNAME" --password-stdin
   - docker build -t sravan13/react-test -f ./client/Dockerfile.dev ./client/Dockerfile.dev
 
