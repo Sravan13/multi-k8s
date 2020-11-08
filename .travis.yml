@@ -15,7 +15,7 @@ before_install: # below two commands setup google cloud locally in your machine
   - gcloud config set compute/zone us-central1-c	
   - gcloud container clusters get-credentials multi-cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t sravan13/react-test -f ./client/Dockerfile.dev ./client/Dockerfile.dev  ./client
+  - docker build -t sravan13/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true sravan13/react-test npm test
